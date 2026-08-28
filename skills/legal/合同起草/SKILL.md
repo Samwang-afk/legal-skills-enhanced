@@ -3,6 +3,16 @@ name: 合同起草
 description: 合同起草、生成合同、拟定协议、写合同、根据交易安排形成合同文本、多轮修订和最终版归档的唯一入口。基于三观四步法与用户可选配置的本地合同模板库，支持有模板时定制化起草、无模板时独立起草；输出合同草案，并同步生成客户可读合同编号、合同概览、业务摘要、版本记录、修订历史和续约提醒信息。
 ---
 
+> **声明**
+>
+> 本 Skill 基于 [pa1nrui1/legal-skills](https://github.com/pa1nrui1/legal-skills) fork 并继续开发。上游 `legal-skills` 及其原有内容继续遵循其原始 MIT License。
+>
+> 在此基础上，**Samwang-afk** 引入 Ludus Agent 的问题澄清与反向复核机制。Ludus Agent 为独立开发的闭源框架，其相关原创架构、实现及材料不属于上游 MIT 授权范围；对外授权部分遵循 **PolyForm Noncommercial License 1.0.0**。Ludus Agent 贡献者包括 [@xiayuzizhuo666](https://github.com/xiayuzizhuo666) 与 [@samwang-afk](https://github.com/samwang-afk)。除另有明确授权外，Ludus Agent 相关原创内容保留全部权利。
+>
+> 本 Skill 的输出仅作为法律工作辅助草稿，不构成正式法律意见。Agent 将尽量区分已核实事实、当事人陈述与模型推断；涉及关键事实、法规、案例或重大判断时，将优先核验现有材料，必要时提出最小必要追问，并对核心结论进行反向复核。
+>
+> 最终事实认定、法律适用、诉讼策略及正式法律文书，仍应由律师、法务或其他具备相应资格的专业人士复核确认。
+
 ## 法律工作总控规则（强制）
 
 执行本 Skill 前，必须先遵循：

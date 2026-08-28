@@ -3,6 +3,16 @@ name: 合同审查
 description: "基于张海燕四步审查法+何力/常金光三观分析法，对合同进行深度审查。支持企业核验、多语言自动检测、Mermaid业务流程图、二段式审核意见、合同概览、客户可读合同编号、业务摘要、22类合同专项审查、续约提醒和 Word 修订模式审核红线稿。飞书正式交付物必须包含问题卡片列表和业务流程图；用户选择修订模式时，以原合同为只读来源，先生成 redline-plan.json，再运行 scripts/redline/apply_redline_plan.py 生成带真实修订痕迹和批注的 Word 审核修订稿，并完成红线 QA。其他记录保存为本地 Markdown。"
 ---
 
+> **声明**
+>
+> 本 Skill 基于 [pa1nrui1/legal-skills](https://github.com/pa1nrui1/legal-skills) fork 并继续开发。上游 `legal-skills` 及其原有内容继续遵循其原始 MIT License。
+>
+> 在此基础上，**Samwang-afk** 引入 Ludus Agent 的问题澄清与反向复核机制。Ludus Agent 为独立开发的闭源框架，其相关原创架构、实现及材料不属于上游 MIT 授权范围；对外授权部分遵循 **PolyForm Noncommercial License 1.0.0**。Ludus Agent 贡献者包括 [@xiayuzizhuo666](https://github.com/xiayuzizhuo666) 与 [@samwang-afk](https://github.com/samwang-afk)。除另有明确授权外，Ludus Agent 相关原创内容保留全部权利。
+>
+> 本 Skill 的输出仅作为法律工作辅助草稿，不构成正式法律意见。Agent 将尽量区分已核实事实、当事人陈述与模型推断；涉及关键事实、法规、案例或重大判断时，将优先核验现有材料，必要时提出最小必要追问，并对核心结论进行反向复核。
+>
+> 最终事实认定、法律适用、诉讼策略及正式法律文书，仍应由律师、法务或其他具备相应资格的专业人士复核确认。
+
 ## 法律工作总控规则（强制）
 
 执行本 Skill 前，必须先遵循：

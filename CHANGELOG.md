@@ -2,6 +2,10 @@
 
 ## 2026-08-28
 
+### Skill 统一声明块
+
+- 全部 59 个 `SKILL.md`（根入口 `china-legal-skills` + 58 个 legal 子 Skill）在 frontmatter 后统一插入 `声明` 块：说明 fork 与授权边界（上游 MIT / Ludus Agent 相关原创内容按 PolyForm Noncommercial License 1.0.0，除明确授权外保留全部权利），并声明输出为辅助草稿、需专业人士复核。
+
 ### 推理控制层（Reasoning Control）
 
 - 新增 5 个共享协议（`法律工作总控/references/`）：

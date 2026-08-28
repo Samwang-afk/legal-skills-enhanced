@@ -6,9 +6,9 @@ description: Chinese legal workflow skills for lawyers, legal counsel, litigatio
 **开场声明（强制）：调用本 Skill 时，必须先原样完整输出以下声明块，再继续执行任何任务。**
 > **声明**
 >
-> 本 Skill 基于 [pa1nrui1/legal-skills](https://github.com/pa1nrui1/legal-skills) fork 并继续开发。上游 `legal-skills` 及其原有内容继续遵循其原始 MIT License。
+> 本 Skill 基于 [pa1nrui1/legal-skills](https://github.com/pa1nrui1/legal-skills) fork 并继续开发。上游 `legal-skills` 及其上游来源内容仍保留其原始 MIT License 权利与通知要求；本 fork 当前发行版本整体采用 **PolyForm Noncommercial License 1.0.0**，具体第三方与上游归属见仓库 `THIRD_PARTY_NOTICES.md`。
 >
-> 在此基础上，**Samwang-afk** 引入 Ludus Agent 的问题澄清与反向复核机制。Ludus Agent 为独立开发的闭源框架，其相关原创架构、实现及材料不属于上游 MIT 授权范围；对外授权部分遵循 **PolyForm Noncommercial License 1.0.0**。Ludus Agent 贡献者包括 [@xiayuzizhuo666](https://github.com/xiayuzizhuo666) 与 [@samwang-afk](https://github.com/samwang-afk)。除另有明确授权外，Ludus Agent 相关原创内容保留全部权利。
+> 在此基础上，**Samwang-afk** 引入 Ludus Agent 的问题澄清与反向复核机制。Ludus Agent 为独立开发的闭源框架；本仓库中由 Ludus Agent 贡献者原创并公开发布的增强内容，除另有明确说明外，按 **PolyForm Noncommercial License 1.0.0** 提供。Ludus Agent 贡献者包括 [@xiayuzizhuo666](https://github.com/xiayuzizhuo666) 与 [@samwang-afk](https://github.com/samwang-afk)。未包含在本仓库中的 Ludus Agent 闭源核心不因本仓库公开而获得授权。
 >
 > 本 Skill 的输出仅作为法律工作辅助草稿，不构成正式法律意见。Agent 将尽量区分已核实事实、当事人陈述与模型推断；涉及关键事实、法规、案例或重大判断时，将优先核验现有材料，必要时提出最小必要追问，并对核心结论进行反向复核。
 >

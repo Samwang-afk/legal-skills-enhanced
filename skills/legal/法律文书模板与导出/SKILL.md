@@ -3,6 +3,16 @@ name: 法律文书模板与导出
 description: 统一处理法律工作中最终需要输出本地 Word（.docx）的文书、报告、清单、笔录、意见书、函件、合同和正式交付文件。由法律工作总控强制路由调用；业务 Skill 负责正文和法律判断，本 Skill 负责选择格式 profile、接收语义 HTML 或要素式填充数据、导出 DOCX、结构体检和兜底模板。
 ---
 
+> **声明**
+>
+> 本 Skill 基于 [pa1nrui1/legal-skills](https://github.com/pa1nrui1/legal-skills) fork 并继续开发。上游 `legal-skills` 及其原有内容继续遵循其原始 MIT License。
+>
+> 在此基础上，**Samwang-afk** 引入 Ludus Agent 的问题澄清与反向复核机制。Ludus Agent 为独立开发的闭源框架，其相关原创架构、实现及材料不属于上游 MIT 授权范围；对外授权部分遵循 **PolyForm Noncommercial License 1.0.0**。Ludus Agent 贡献者包括 [@xiayuzizhuo666](https://github.com/xiayuzizhuo666) 与 [@samwang-afk](https://github.com/samwang-afk)。除另有明确授权外，Ludus Agent 相关原创内容保留全部权利。
+>
+> 本 Skill 的输出仅作为法律工作辅助草稿，不构成正式法律意见。Agent 将尽量区分已核实事实、当事人陈述与模型推断；涉及关键事实、法规、案例或重大判断时，将优先核验现有材料，必要时提出最小必要追问，并对核心结论进行反向复核。
+>
+> 最终事实认定、法律适用、诉讼策略及正式法律文书，仍应由律师、法务或其他具备相应资格的专业人士复核确认。
+
 # 法律文书模板与导出
 
 本 Skill 只处理最终 Word 的格式与导出，不替代业务 Skill 的事实梳理、法律分析、文书正文生成、材料读取复查、法规核验和出稿前审查。

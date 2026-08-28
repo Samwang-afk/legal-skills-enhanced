@@ -3,6 +3,16 @@ name: 产品法务
 description: 中国境内产品法务与产品合规 Skill。用于产品上线、功能合规、默认开启、客户 Logo/客户案例展示、PRD/页面流程/用户协议/隐私政策/帮助中心审查、产品材料合规审查、高合规行业产品深度评估、营销文案产品场景初筛等任务。适用于用户询问“这个功能能不能做”“能不能把客户 logo 放官网”“产品材料是否合法合规”“医疗/金融/教育/AI/平台类产品是否能上线”等问题。
 ---
 
+> **声明**
+>
+> 本 Skill 基于 [pa1nrui1/legal-skills](https://github.com/pa1nrui1/legal-skills) fork 并继续开发。上游 `legal-skills` 及其原有内容继续遵循其原始 MIT License。
+>
+> 在此基础上，**Samwang-afk** 引入 Ludus Agent 的问题澄清与反向复核机制。Ludus Agent 为独立开发的闭源框架，其相关原创架构、实现及材料不属于上游 MIT 授权范围；对外授权部分遵循 **PolyForm Noncommercial License 1.0.0**。Ludus Agent 贡献者包括 [@xiayuzizhuo666](https://github.com/xiayuzizhuo666) 与 [@samwang-afk](https://github.com/samwang-afk)。除另有明确授权外，Ludus Agent 相关原创内容保留全部权利。
+>
+> 本 Skill 的输出仅作为法律工作辅助草稿，不构成正式法律意见。Agent 将尽量区分已核实事实、当事人陈述与模型推断；涉及关键事实、法规、案例或重大判断时，将优先核验现有材料，必要时提出最小必要追问，并对核心结论进行反向复核。
+>
+> 最终事实认定、法律适用、诉讼策略及正式法律文书，仍应由律师、法务或其他具备相应资格的专业人士复核确认。
+
 ## 法律工作总控规则（强制）
 
 执行本 Skill 前，必须先遵循：

@@ -3,6 +3,16 @@ name: 法律工作总控
 description: legal 文件夹通用入口 Skill。用于法律咨询、案件办理、合同、产品法务、监管合规、诉讼、刑辩、劳动争议、破产、合规、文书、检索等任务的语义路由、案件隔离、来源披露、文件读取复查、法规/Wiki 校验、OCR 校正、缺口提示和合同偏好学习。用户提出任何法律工作请求、客户编号、案件材料处理、法律文书生成或需要自动匹配 legal 子 Skill 时触发。
 ---
 
+> **声明**
+>
+> 本 Skill 基于 [pa1nrui1/legal-skills](https://github.com/pa1nrui1/legal-skills) fork 并继续开发。上游 `legal-skills` 及其原有内容继续遵循其原始 MIT License。
+>
+> 在此基础上，**Samwang-afk** 引入 Ludus Agent 的问题澄清与反向复核机制。Ludus Agent 为独立开发的闭源框架，其相关原创架构、实现及材料不属于上游 MIT 授权范围；对外授权部分遵循 **PolyForm Noncommercial License 1.0.0**。Ludus Agent 贡献者包括 [@xiayuzizhuo666](https://github.com/xiayuzizhuo666) 与 [@samwang-afk](https://github.com/samwang-afk)。除另有明确授权外，Ludus Agent 相关原创内容保留全部权利。
+>
+> 本 Skill 的输出仅作为法律工作辅助草稿，不构成正式法律意见。Agent 将尽量区分已核实事实、当事人陈述与模型推断；涉及关键事实、法规、案例或重大判断时，将优先核验现有材料，必要时提出最小必要追问，并对核心结论进行反向复核。
+>
+> 最终事实认定、法律适用、诉讼策略及正式法律文书，仍应由律师、法务或其他具备相应资格的专业人士复核确认。
+
 # 法律工作总控
 
 本 Skill 是 `skills/legal` 的统一入口和共享规则层，不替代子 Skill 的专业流程。

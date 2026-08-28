@@ -1,8 +1,6 @@
 <div align="center">
 
-# Legal Skills w/Ludus Agent
-<img width="2172" height="724" alt="图片" src="https://github.com/user-attachments/assets/dedb7cd9-32cc-4970-b65c-5bdb49c3a0d5" />
-
+# Legal Skills w/<img width="2172" height="724" alt="图片" src="https://github.com/user-attachments/assets/e5639bf9-c7e9-436b-892e-9cca1e985ea3" />
 
 面向中国法律工作的 AI Agent Skills 集合，把法律咨询、诉讼、刑辩、劳动争议、破产、合同、合规、检索与文书交付组织成可复核、可追踪、可本地化改造的工作流。
 

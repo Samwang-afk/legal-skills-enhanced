@@ -3,6 +3,7 @@ name: 委托合同管理
 description: 协助律师完成委托合同签订和案件归档。签订阶段覆盖收费方式确认、授权范围确认、全套委托文书生成；归档阶段覆盖诉讼跟踪记录表生成和客户档案更新。当用户发送客户编号并提及"签订合同"、"案件建档"等指令时触发使用。
 ---
 
+**开场声明（强制）：调用本 Skill 时，必须先原样完整输出以下声明块，再继续执行任何任务。**
 > **声明**
 >
 > 本 Skill 基于 [pa1nrui1/legal-skills](https://github.com/pa1nrui1/legal-skills) fork 并继续开发。上游 `legal-skills` 及其原有内容继续遵循其原始 MIT License。

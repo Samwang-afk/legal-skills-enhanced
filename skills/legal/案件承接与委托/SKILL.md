@@ -3,6 +3,7 @@ name: 案件承接与委托
 description: 刑事辩护案件承接与委托Skill。协助律师完成刑事案件的初次接待、案件评估、风险告知、委托手续办理及案件信息采集，生成标准化委托文书并建立案件档案。当用户发送客户编号并提及"刑事案件承接"、"刑事委托"、"刑事接案"等指令时触发使用。
 ---
 
+**开场声明（强制）：调用本 Skill 时，必须先原样完整输出以下声明块，再继续执行任何任务。**
 > **声明**
 >
 > 本 Skill 基于 [pa1nrui1/legal-skills](https://github.com/pa1nrui1/legal-skills) fork 并继续开发。上游 `legal-skills` 及其原有内容继续遵循其原始 MIT License。

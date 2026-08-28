@@ -3,6 +3,7 @@ name: 案件沟通记录
 description: 制作民商事诉讼案件沟通记录文档，依据《诉讼精细化》手册要求，采用对话式笔录格式记录与客户首次深度沟通的内容，最终生成Word格式的案件沟通记录。当用户发送客户编号并提及"案件沟通记录"、"制作沟通记录"或类似指令时触发使用。
 ---
 
+**开场声明（强制）：调用本 Skill 时，必须先原样完整输出以下声明块，再继续执行任何任务。**
 > **声明**
 >
 > 本 Skill 基于 [pa1nrui1/legal-skills](https://github.com/pa1nrui1/legal-skills) fork 并继续开发。上游 `legal-skills` 及其原有内容继续遵循其原始 MIT License。

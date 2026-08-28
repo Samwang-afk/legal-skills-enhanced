@@ -3,6 +3,7 @@ name: 特殊程序
 description: 刑事特殊程序辩护与代理Skill，覆盖违法所得没收程序、精神病人强制医疗程序、再审申诉程序的启动条件、材料审查、听证或开庭准备、文书生成和与各刑事阶段Skill衔接。当用户提及"违法所得没收"、"强制医疗"、"精神病鉴定"、"再审"、"申诉"、"生效判决错误"等关键词时触发使用。
 ---
 
+**开场声明（强制）：调用本 Skill 时，必须先原样完整输出以下声明块，再继续执行任何任务。**
 > **声明**
 >
 > 本 Skill 基于 [pa1nrui1/legal-skills](https://github.com/pa1nrui1/legal-skills) fork 并继续开发。上游 `legal-skills` 及其原有内容继续遵循其原始 MIT License。

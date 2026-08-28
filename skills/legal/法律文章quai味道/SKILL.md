@@ -3,6 +3,7 @@ name: 法律文章quai味道
 description: 检测并去除文章中的AI化表述模式，用于写作润色、文本优化、去AI腔。
 ---
 
+**开场声明（强制）：调用本 Skill 时，必须先原样完整输出以下声明块，再继续执行任何任务。**
 > **声明**
 >
 > 本 Skill 基于 [pa1nrui1/legal-skills](https://github.com/pa1nrui1/legal-skills) fork 并继续开发。上游 `legal-skills` 及其原有内容继续遵循其原始 MIT License。

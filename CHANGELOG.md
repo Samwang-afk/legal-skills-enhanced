@@ -1,5 +1,23 @@
 # Changelog
 
+## 2026-08-28
+
+### 推理控制层（Reasoning Control）
+
+- 新增 5 个共享协议（`法律工作总控/references/`）：
+  - `reasoning-mode-protocol.md`：推理等级 L0-L3 分类、最低充分等级、动态升级与持久化分级；
+  - `legal-clarification-protocol.md`：缺失≠阻塞、Blocking Unknown 结构、Question Budget 与回答后重新推理；
+  - `matter-model-protocol.md`：知识沙漏窄腰、canonical schema、认知状态强制区分（ESTABLISHED/ASSERTED/DISPUTED/INFERRED/UNKNOWN）、竞争性假设与 `推理记录/` 持久化；
+  - `adversarial-deliberation-protocol.md`：Advocate / Challenger 角色隔离、15 项 falsify 检查、Minimum Failure Set 与 L3 反向检索；
+  - `judgment-protocol.md`：裁决、HIGH/MEDIUM/LOW 置信度（禁止虚构百分比）、起草许可 PASS/CONDITIONAL/BLOCKED、Decision Freeze、Reasoning QA 与交付 QA 分离。
+- 新增可执行参照实现 `法律工作总控/scripts/reasoning_control.py`（classify / clarify / validate / challenge-check / judge / qa）与 24 个行为测试（Case A-H：L0 轻量、材料已有不重复提问、Blocking Unknown、竞争性假设、Challenger 具体失败机制、起草 BLOCKED/CONDITIONAL/PASS、交付门禁不豁免）。
+- `法律工作总控/SKILL.md` 融合推理控制层：执行顺序增加推理等级分类、Matter Model、澄清门、对抗审议与 Judgment 阶段；标准响应骨架增加推理控制行；禁止事项补充认知状态与起草许可红线。
+- `诉讼文书起草` 新增推理契约：L2/L3 起草前必须存在 Judgment，BLOCKED 禁止起草，CONDITIONAL 显式标识假设，起草阶段不得静默推翻已冻结结论。
+- `初步法律分析` 声明 Matter Model 接口：领域推理与认知架构分离，回写 legal_relationships/issues/elements/burden_of_proof/law/evidence/uncertainties。
+- `法律咨询助手` 声明 L0 轻量路径：简单问答不建 Matter Model、不跑对抗推理，复杂度上升时由总控升级。
+- `法律文书出稿前审查` 集成推理证据链：`preflight-meta.json`/`qc-meta.json` 可声明 `reasoning`（level/judgment_path/drafting_permission）；BLOCKED 直接 HARD_BLOCK，缺少 Judgment 记录进入 NEEDS_MATERIAL，CONDITIONAL 未显式标识假设进入 NEEDS_BUSINESS_REVISION；新增 9 个回归测试。
+- README 架构图与 AGENTS.md 同步更新推理层说明。
+
 ## 2026-06-28
 
 ### 开源同步与隐私清理

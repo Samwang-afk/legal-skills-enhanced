@@ -130,30 +130,28 @@ Legal Skills 试图解决这些具体问题：
   │
   ▼
 法律工作总控
-  - 语义路由
-  - 事项隔离
-  - 材料读取复查
-  - 法规/案例校验
-  - 来源边界
-  - 输出底线
   │
-  ▼
-专业业务 Skill
-  - 民事诉讼
-  - 刑事辩护
-  - 劳动争议
-  - 破产程序
-  - 合同与交易
-  - 产品法务与合规
-  - 法律咨询与检索
+  ├── Reasoning Control（推理控制层）
+  │   ├── Reasoning Mode Router（L0 直接 / L1 标准 / L2 审议 / L3 对抗）
+  │   ├── Legal Clarification Gate（Blocking Unknown、Question Budget）
+  │   ├── Matter Model（知识窄腰，ESTABLISHED/ASSERTED/DISPUTED/INFERRED/UNKNOWN）
+  │   ├── Adversarial Deliberation（Advocate / Challenger / Minimum Failure Set）
+  │   └── Judgment（裁决、起草许可 PASS/CONDITIONAL/BLOCKED、Reasoning QA）
   │
-  ▼
-交付质量门
-  - 出稿前审查
-  - 文书模板与导出
-  - DOCX 结构检查
-  - 缺口与风险提示
+  ├── Professional Legal Skills（六来源体系、请求权基础、要件审判、合同、证据、程序等）
+  │
+  └── Delivery Control（正式交付物硬闸门、出稿前审查、模板与导出、DOCX 结构检查、QC）
 ```
+
+### 推理架构说明
+
+- **信息收敛/发散**：材料与检索结果先收敛为单一 Matter Model（知识窄腰），专业 Skill 围绕同一事实与争点模型工作，再发散到各请求权路径、支持与反对论证，最后收敛为 Judgment。业务 Skill 负责“法律工作怎么做”，Matter Model 负责“我们现在知道什么”，对抗审议负责“我们的判断为什么可能错”，Judgment 负责“是否已足以进入下一阶段”。
+- **不确定性控制**：缺失信息不等于阻塞问题；只有 decision-relevant 且无法从现有材料或检索解决时才向用户提问；单轮原则上 1–5 个问题。用户回答后必须更新 Matter Model 并重查受影响分析。
+- **对抗推理**：L2/L3 任务执行 Advocate → Challenger → Judgment。Challenger 以推翻结论为任务，必须给出具体失败机制与最小失败条件集合，禁止“仍存在风险”类泛化表述。
+- **起草许可**：L2/L3 正式起草必须发生在 Judgment 之后。BLOCKED 禁止起草，CONDITIONAL 要求显式标识假设与未确认事实；出稿前审查校验推理证据链。
+- **交付验证不变**：既有正式交付物硬闸门、出稿前审查、模板与导出、DOCX 结构检查继续强制运行，推理层不豁免任何交付质量门。
+
+共享协议位于 `skills/legal/法律工作总控/references/`（`reasoning-mode-protocol.md`、`legal-clarification-protocol.md`、`matter-model-protocol.md`、`adversarial-deliberation-protocol.md`、`judgment-protocol.md`），可执行参照实现与行为测试见 `skills/legal/法律工作总控/scripts/`。
 
 ## Skill 列表
 

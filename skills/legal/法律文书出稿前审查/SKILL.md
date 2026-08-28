@@ -65,6 +65,19 @@ description: 在法律业务 Skill 生成正文或要素式字段后、法律文
 - `fill-plan.json`：字段到 DOCX 母版的表格坐标和锚点映射。
 - `qc-meta.json`：模板 ID、事项路径、来源记录、读取复查、法规校验和用户确认记录。
 
+L2/L3 任务文书必须额外提供推理证据（L0/L1 可不提供）。`preflight-meta.json`（或 `qc-meta.json`）增加：
+
+```json
+"reasoning": {
+  "level": "L2",
+  "judgment_path": "<系统记录区>/推理记录/judgment.md",
+  "drafting_permission": "PASS"
+}
+```
+
+- 未声明 `reasoning` 的文书按无推理要求处理（L0/L1 路径）；声明了 `level` 为 L2/L3 的文书进入推理证据检查。
+- 本 Skill 只做交付 QA 与推理证据链核验；Reasoning QA（事实状态、争点、举证责任、结论是否超过证据等）由 Judgment 阶段完成，不在本 Skill 重复。
+
 ## 审查命令
 
 ```bash
@@ -93,6 +106,11 @@ python scripts/preflight_check.py \
 - 要素式表单文书检查模板 ID 是否命中 `template-clone-manifest.json`。
 - 检查 `fill-plan.json` 中每个字段是否有唯一表格坐标和锚点；重复锚点不得只用全局文本定位。
 - 检查字段缺口、金额、日期、主体、诉请和落款是否已确认；未确认字段不得写入正式字段。
+- 检查推理证据链（L2/L3 声明后强制）：
+  - `reasoning.drafting_permission` 为 `BLOCKED`：直接 HARD_BLOCK，不得导出；回到总控 Clarification / Evidence / Research / Professional Analysis 后重新审议。
+  - `reasoning.drafting_permission` 非法：NEEDS_BUSINESS_REVISION，退回业务 Skill 修正 preflight-meta.json。
+  - 缺少 `judgment_path` / Judgment 文件缺失或未含 `drafting_permission` 字段：NEEDS_MATERIAL，回到推理控制层补齐 Judgment 记录。
+  - `drafting_permission` 为 `CONDITIONAL` 时，draft.html 正文必须显式包含假设/主张/待确认标识（`【假设】`、`【当事人主张】`、`【待确认】`、`【待补证据】`、`【未确认】` 任一），否则 NEEDS_BUSINESS_REVISION，退回业务 Skill 显式标识后再审。
 
 ## 自动修正边界
 

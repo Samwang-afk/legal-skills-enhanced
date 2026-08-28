@@ -23,6 +23,14 @@ description: 基于"六来源体系"、请求权基础6步法与要件审判九�
 
 # 初步法律分析Skill
 
+## 与推理控制层的关系（Matter Model 接口）
+
+- 总控推理控制层负责认知架构（事实状态、争点模型、不确定性与裁决门禁）；本 Skill 负责领域推理（六来源体系、请求权基础 6 步法、要件审判九步法）。二者不互相取代。
+- 进入本 Skill 前，总控已按 `matter-model-protocol.md` 建立/更新 Matter Model；本 Skill 从中读取 facts / issues / legal_relationships，不另行重建案件事实副本。
+- 本 Skill 完成后回写 Matter Model：`legal_relationships`（候选与 current_view）、`issues`（candidate_positions / elements / burden_of_proof）、`law`、`evidence`、`uncertainties`、`timeline`。
+- 要件审判产出的是候选结论与支持/反对证据，不是最终裁决；L2/L3 的最终裁决由对抗审议与 Judgment 完成（见 `adversarial-deliberation-protocol.md`、`judgment-protocol.md`）。
+- 事实表述遵守认知状态（ESTABLISHED / ASSERTED / DISPUTED / INFERRED / UNKNOWN），禁止把用户主张自动写成确定事实。
+
 ## 轻量入口
 
 本文件是瘦身后的触发入口，只保留任务边界、执行顺序和按需读取索引。完整流程、模板、清单、专项规则和长示例已迁移至 `references/完整流程.md`。

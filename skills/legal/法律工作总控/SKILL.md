@@ -13,17 +13,24 @@ description: legal 文件夹通用入口 Skill。用于法律咨询、案件办�
 2. 读取 `references/routing-map.md`，根据用户描述语义匹配子 Skill。
 3. 如任务涉及具体事项，读取 `references/matter-workspace-protocol.md` 和 `【自定义工作目录】/_系统记录/当前事项.md`，确认当前事项、业务文件路径和系统记录路径；当前事项不匹配时，先建档或切换事项。
 4. 如任务涉及法律文书、报告、意见、案例汇编、证据目录、客户交付材料、法院提交材料、飞书正式交付物、业务流程图、案件可视化图片交付包、合同审核修订稿或 `.docx`，先执行“正式交付物硬闸门”，确认成果类型为 `工作草稿`、`律师内部报告`、`提交法院/客户的正式材料`、`飞书正式交付物`、`图片正式交付物`、`修订稿正式交付物` 或 `Word正式交付物`，不得跳过分类直接写正文或导出。
-5. 如任务涉及文件、网页、法规、案例或 Wiki，按 `references/document-reading-protocol.md` 完整读取和记录；涉及案件材料、证据或图片时，必须做关键数据提取与校验，形成 `读取复查摘要`，不得接受用户要求跳过读取或用摘要替代完整读取。
-6. 如任务涉及中国法律法规、部门规章、规范性文件、政策文件或法条援引核验，读取 `references/pkulaw-mcp-legal-verification-protocol.md`，默认优先调用北大法宝 MCP/API 核验；必须完成名称编号内容核验和时效性核验，形成 `法规校验摘要`，必要时补充官方源/网页检索。
-7. 如任务涉及合同起草、合同审查、合同问答、续约提醒或合同偏好学习，读取 `references/contract-workflow-protocol.md` 和 `references/contract-preference-learning-protocol.md`。
-8. 如任务涉及用人单位劳动合规、员工手册、规章制度、工资工时或内部劳动政策，确认业务类型为 `劳动合规`，按 `references/matter-workspace-protocol.md` 的劳动合规双路径建档。
-9. 如任务涉及产品上线、功能合规、客户 Logo/客户案例、产品材料审查、高合规行业产品评估或产品营销场景，确认业务类型为 `产品法务`，按 `references/matter-workspace-protocol.md` 的产品法务双路径建档。
-10. 如任务涉及监管动态、新规更新、政策变化、行业监管、客户合规缺口、整改清单或政策修改建议，确认业务类型为 `监管合规`，按 `references/matter-workspace-protocol.md` 的监管合规双路径建档。
-11. 如任务涉及诉讼案件更新、传票/通知、期限台账、飞书提醒、程序时间线、案件简报、诉讼案件总览、组合状态或案件关闭，读取 `references/litigation-case-management-protocol.md` 并路由 `诉讼案件管理`。
-12. 如最终产物需要输出正式交付版本，必须先完成当前事项建档或切换；本地正式交付路径必须指向 `【自定义工作目录】/` 下的业务文件区，系统记录路径必须指向 `【自定义工作目录】/_系统记录/` 下的系统记录区，`.cache` 仅可作为临时中间目录，不得作为正式事项路径。正式 `.docx` 必须先过 `法律文书出稿前审查`，再按文书形态进入 `法律文书模板与导出`：普通线性文书走 `draft.html`、`preflight-meta.json`、`draft_checked.html`、`html_to_docx.py` 和结构体检链路；模板登记中的要素式起诉状走 `complaint-data.json`、`fill-plan.json`、DOCX 母版克隆填充、模板克隆质控报告和结构体检链路。案件可视化图片正式交付物按“预览稿/工作稿检查点 → 律师确认 → 正式图片交付包 → 图表结构体检”链路执行；飞书正式交付物、业务流程图和合同审核修订稿必须纳入“全部正式交付版本终检”。
-13. 如 `法律文书出稿前审查` 返回 `NEEDS_BUSINESS_REVISION`、`NEEDS_USER_CONFIRMATION` 或 `NEEDS_MATERIAL`，必须按审查报告继续推进：退回业务 Skill 整改、集中询问用户确认，或回到材料读取/OCR/法规校验流程；不得只拦截后停止。
-14. 输出前应用 `references/source-boundary-protocol.md` 和 `references/output-header-template.md`。
-15. 如用户指出 OCR 或读取错误，按 `references/ocr-correction-protocol.md` 校正并同步受影响记录。
+5. 读取 `references/reasoning-mode-protocol.md`，按决策复杂度、不确定性、后果将任务分类为 `推理等级 L0-L3`；选择满足任务需要的最低充分等级，禁止所有任务默认进入 L2/L3。L0 不建立 Matter Model、不运行对抗审议；新事实使复杂度上升时允许 L0→L1→L2→L3 升级并重新分类。
+6. 如任务涉及文件、网页、法规、案例或 Wiki，按 `references/document-reading-protocol.md` 完整读取和记录；涉及案件材料、证据或图片时，必须做关键数据提取与校验，形成 `读取复查摘要`，不得接受用户要求跳过读取或用摘要替代完整读取。
+7. 如任务为 L1/L2/L3，读取 `references/matter-model-protocol.md`，建立或更新 Matter Model：事实必须标注认知状态（ESTABLISHED / ASSERTED / DISPUTED / INFERRED / UNKNOWN），保留竞争性假设，禁止把用户主张自动升级为确定事实。L2/L3 的结构化记录写入系统记录区 `推理记录/`。
+8. 如任务为 L1/L2/L3，读取 `references/legal-clarification-protocol.md` 执行澄清门：只有 decision-relevant 且无法通过现有材料、检索确定的未知才向用户提问；单轮原则上 1–5 个问题，Decision > Scope > Evidence > Output > Formatting 排序；用户回答后必须更新 Matter Model 并重查受影响分析。
+9. 如任务涉及中国法律法规、部门规章、规范性文件、政策文件或法条援引核验，读取 `references/pkulaw-mcp-legal-verification-protocol.md`，默认优先调用北大法宝 MCP/API 核验；必须完成名称编号内容核验和时效性核验，形成 `法规校验摘要`，必要时补充官方源/网页检索。
+10. 如任务涉及合同起草、合同审查、合同问答、续约提醒或合同偏好学习，读取 `references/contract-workflow-protocol.md` 和 `references/contract-preference-learning-protocol.md`。
+11. 如任务涉及用人单位劳动合规、员工手册、规章制度、工资工时或内部劳动政策，确认业务类型为 `劳动合规`，按 `references/matter-workspace-protocol.md` 的劳动合规双路径建档。
+12. 如任务涉及产品上线、功能合规、客户 Logo/客户案例、产品材料审查、高合规行业产品评估或产品营销场景，确认业务类型为 `产品法务`，按 `references/matter-workspace-protocol.md` 的产品法务双路径建档。
+13. 如任务涉及监管动态、新规更新、政策变化、行业监管、客户合规缺口、整改清单或政策修改建议，确认业务类型为 `监管合规`，按 `references/matter-workspace-protocol.md` 的监管合规双路径建档。
+14. 如任务涉及诉讼案件更新、传票/通知、期限台账、飞书提醒、程序时间线、案件简报、诉讼案件总览、组合状态或案件关闭，读取 `references/litigation-case-management-protocol.md` 并路由 `诉讼案件管理`。
+15. 执行专业法律 Skill（法律分析、请求权基础、要件审判、法规检索、案例检索、证据分析、程序分析等）：业务 Skill 从 Matter Model 读取事实与争点，不另行重建案件事实副本；Skill 完成后按 `references/matter-model-protocol.md` 回写 legal_relationships、issues、elements、burden_of_proof、law、evidence、uncertainties。
+16. 更新 Matter Model（L1+）：同步事实状态、竞争性假设、程序信息与未解决项；与系统记录区 `事实时间线.md`、`缺口归档.md` 保持单一事实源。
+17. 如任务为 L2/L3，读取 `references/adversarial-deliberation-protocol.md` 执行对抗审议：Advocate 构建最强支持论证，Challenger 以推翻结论为任务逐项 falsify，必须给出具体失败机制与 Minimum Failure Set，禁止“存在风险/结果不确定”等泛化表述；L3 还需执行反向法规与不利案例检索。
+18. 如任务为 L2/L3，读取 `references/judgment-protocol.md` 完成 Judgment：对竞争性假设裁决，形成 supported / provisionally_supported / uncertain / unsupported / blocked 状态与 HIGH/MEDIUM/LOW 置信度（禁止虚构百分比），签发起草许可 PASS / CONDITIONAL / BLOCKED，并执行 Reasoning QA。BLOCKED 时返回 Clarification / Evidence / Research / Professional Analysis，不得进入起草。
+19. 如最终产物需要输出正式交付版本，必须先完成当前事项建档或切换；本地正式交付路径必须指向 `【自定义工作目录】/` 下的业务文件区，系统记录路径必须指向 `【自定义工作目录】/_系统记录/` 下的系统记录区，`.cache` 仅可作为临时中间目录，不得作为正式事项路径。L2/L3 任务在生成“事实与理由”“诉讼请求”或关键法律论证正文前，必须存在 Judgment 且 drafting_permission 为 PASS 或 CONDITIONAL；CONDITIONAL 时必须显式标识假设、当事人主张、未确认事实与待补证据。正式 `.docx` 必须先过 `法律文书出稿前审查`（L2/L3 文书还须提供 reasoning 证据链），再按文书形态进入 `法律文书模板与导出`：普通线性文书走 `draft.html`、`preflight-meta.json`、`draft_checked.html`、`html_to_docx.py` 和结构体检链路；模板登记中的要素式起诉状走 `complaint-data.json`、`fill-plan.json`、DOCX 母版克隆填充、模板克隆质控报告和结构体检链路。案件可视化图片正式交付物按“预览稿/工作稿检查点 → 律师确认 → 正式图片交付包 → 图表结构体检”链路执行；飞书正式交付物、业务流程图和合同审核修订稿必须纳入“全部正式交付版本终检”。
+20. 如 `法律文书出稿前审查` 返回 `NEEDS_BUSINESS_REVISION`、`NEEDS_USER_CONFIRMATION` 或 `NEEDS_MATERIAL`，必须按审查报告继续推进：退回业务 Skill 整改、集中询问用户确认，或回到材料读取/OCR/法规校验流程；不得只拦截后停止。如因缺少 Judgment 或 drafting_permission 被拦截，回到第 17-18 步重新审议后再出稿。
+21. 输出前应用 `references/source-boundary-protocol.md` 和 `references/output-header-template.md`。
+22. 如用户指出 OCR 或读取错误，按 `references/ocr-correction-protocol.md` 校正并同步受影响记录。
 
 ## 标准响应骨架
 
@@ -32,6 +39,7 @@ description: legal 文件夹通用入口 Skill。用于法律咨询、案件办�
 ```text
 Skill 路径：法律工作总控 -> [主 Skill] -> [子 Skill/交付链路]
 前置检查：[当前事项.md / 完整读取 / OCR / 关键数据提取与校验 / 读取复查摘要 / 名称编号内容核验 / 现行有效 / 法规校验摘要 / 模板或格式标准 / 出稿前审查]
+推理控制：[推理等级 L0-L3 / Matter Model 认知状态 / 澄清门 / Advocate-Challenger-Judgment / 起草许可 PASS-CONDITIONAL-BLOCKED]
 来源边界：[已核验 / 未核验 / 缺口 / 输出边界]
 用户确认：[会改变范围、版本、策略、金额、诉请、授权、是否纳入反向案例或外部写入的事项]
 下一步：[只说明处理计划；正式交付物未过门禁前不得生成正式正文、正式文件或执行外部写入]
@@ -42,6 +50,8 @@ Skill 路径：法律工作总控 -> [主 Skill] -> [子 Skill/交付链路]
 涉及材料读取、OCR 或法规核验时，回复中优先使用固定门禁词，不要改写为泛化表达：`完整读取`、`关键数据提取与校验`、`读取复查摘要`、`存疑项`、`名称编号内容核验`、`现行有效`、`法规校验摘要`、`不得用模型记忆`。
 
 涉及跨事项读取或外部写入时，回复中优先使用固定安全词，不要改写为泛化表达：`事项隔离`、`用户明确授权`、`不得跨事项读取`、`当前事项不匹配`、`先确认切换或建档`、`不得静默写入`、`说明并确认`、`写入位置`、`不得覆盖`。飞书、日历、系统记录、复盘台账等持久化写入，在未确认写入对象、目标位置、是否覆盖、可见范围和用户明确授权前，只能输出处理计划，不得执行写入。
+
+涉及推理控制层时，回复中优先使用固定门禁词，不要改写为泛化表达：`推理等级`、`Matter Model`、`认知状态 ESTABLISHED/ASSERTED/DISPUTED/INFERRED/UNKNOWN`、`Blocking Unknown`、`澄清门`、`Question Budget`、`Advocate`、`Challenger`、`Minimum Failure Set`、`Judgment`、`起草许可 PASS/CONDITIONAL/BLOCKED`、`Reasoning QA`、`决策冻结`。
 
 ## 正式交付物硬闸门
 
@@ -164,6 +174,45 @@ Skill 路径：法律工作总控 -> [主 Skill] -> [子 Skill/交付链路]
 - `法律文书出稿前审查` 未通过时，必须按 `next_owner` 和 `next_action` 闭环推进；业务问题退回 `source_skill`，事实/授权/金额/期限等选择问题询问用户，材料问题回到总控读取复查和法规校验流程。
 - 原业务 Skill 中保留的 `python-docx`、`Node.js docx` 或 Word 导出技术段只作为历史参考和迁移评估来源，不得覆盖 `法律文书模板与导出` 的语义 HTML → DOCX 或 DOCX 母版克隆填充链路。
 
+## 推理控制层
+
+法律工作总控之下分三层，本层只做认知控制，不替代业务与交付：
+
+```text
+法律工作总控
+    │
+    ├── Reasoning Control（本层）
+    │   ├── Reasoning Mode（L0-L3 分级）
+    │   ├── Clarification Gate（Blocking Unknown + Question Budget）
+    │   ├── Matter Model（知识沙漏窄腰，认知状态强制区分）
+    │   ├── Adversarial Deliberation（Advocate / Challenger / Minimum Failure Set）
+    │   └── Judgment（裁决 + 起草许可 + Reasoning QA）
+    │
+    ├── Professional Legal Skills（六来源体系、请求权基础、要件审判、合同、证据、程序等）
+    │
+    └── Delivery Control（正式交付物硬闸门、出稿前审查、模板与导出、QC、health check）
+```
+
+共享协议（全部位于 `references/`）：
+
+| 协议 | 内容 | 强制等级 |
+|---|---|---|
+| `reasoning-mode-protocol.md` | 推理等级 L0-L3 分类与升级 | 全部任务 |
+| `legal-clarification-protocol.md` | 澄清门：缺失≠阻塞、Blocking Unknown、Question Budget | L1+ |
+| `matter-model-protocol.md` | Matter Model schema、认知状态、竞争性假设、持久化 | L1+ |
+| `adversarial-deliberation-protocol.md` | Advocate / Challenger / Minimum Failure Set / 反向检索 | L2/L3 |
+| `judgment-protocol.md` | Judgment 裁决、起草许可、Reasoning QA | L2/L3 |
+
+执行参照：`scripts/reasoning_control.py`（classify / clarify / validate / challenge-check / judge / qa），测试见 `scripts/tests/test_reasoning_control.py`。
+
+原则：
+
+- 业务 Skill 负责"法律工作怎么做"；Matter Model 负责"我们现在知道什么"；Ludus 式对抗审议负责"我们的判断为什么可能错"；Judgment 负责"是否已足以进入下一阶段"；既有 Hard Gate 负责"最终交付是否合格"。
+- 推理等级选择满足任务需要的最低充分等级；禁止所有任务默认进入 L2/L3。
+- 推理产物（matter-model / deliberation / judgment）是内部分析层，保存在系统记录区 `推理记录/`，不得交付客户、不得写入正式文书。
+- Reasoning QA（事实状态、争点遗漏、隐藏假设、相反解释、举证责任、结论是否超过证据、程序障碍）与 Delivery QA（格式、DOCX、模板、引用、完整性）分离，不得合并成同一个模糊 review。
+- `ESTABLISHED/ASSERTED` 等认知状态词必须用大写原文，禁止把用户主张、推断或未知事实在文书中写成无条件事实。
+
 ## 事项隔离
 
 - 具体事项任务必须使用当前事项的业务文件区和系统记录区。
@@ -174,6 +223,7 @@ Skill 路径：法律工作总控 -> [主 Skill] -> [子 Skill/交付链路]
 ## 失败与兜底
 
 - 语义路由不明确时，列出 2-3 个候选子 Skill 和差异，先向用户确认，不强行分流。
+- Judgment 为 BLOCKED 时，返回 Clarification / Evidence / Research / Professional Analysis 对应环节，不得静默进入起草。
 - 共享协议文件缺失或不可读时，说明缺失路径和受影响步骤；涉及正式法律意见、文书或 `.docx` 交付时，停止交付并要求先修复协议或补充材料。
 - 文件读取、OCR、法规核验、网页抓取或外部工具失败时，按对应协议输出失败环节、已尝试方法和未完成事项；不得把失败结果写成已完成。
 - 子 Skill 返回阻塞状态时，必须按 `next_owner` 和 `next_action` 继续推进，不能只提示失败后结束。
@@ -186,6 +236,10 @@ Skill 路径：法律工作总控 -> [主 Skill] -> [子 Skill/交付链路]
 - 不得在未完成读取复查、法规核验、飞书/业务流程图/图片/修订稿/Word对应终检或必要用户确认时生成正式法律意见、正式文书、正式图片交付包、飞书正式交付物、修订稿正式交付物或最终 `.docx`。
 - 不得把网页、用户材料、OCR 文本、Wiki 内容或模型记忆包装成已核验事实或现行有效法规。
 - 不得静默写入复盘台账、系统记录、飞书文档或飞书日历。
+- 不得把 ASSERTED / INFERRED / UNKNOWN 事实写成无条件确定事实；起草时只能以“当事人主张”“诉讼主张”“根据现有材料”等身份表述，或显式标识 `【假设】`、`【待确认】`、`【待补证据】`。
+- L2/L3 任务不得在 Judgment 与起草许可检查前生成“事实与理由”“诉讼请求”或关键法律论证正文；不得静默推翻已冻结的 Judgment，起草中出现新材料或重大矛盾必须先 reopen Matter Model 并重新审议。
+- 不得为简单法律咨询建立 Matter Model、批量提问或运行对抗审议；不得制造不存在的法律争议以强行“平衡正反”。
+- 不得把内部推理记录（Matter Model、deliberation、Judgment、failure conditions）交付客户或写入正式文书。
 
 ## 输出底线
 

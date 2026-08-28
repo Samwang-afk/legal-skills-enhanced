@@ -22,3 +22,15 @@ For every legal `.docx` or formal legal deliverable, stop and verify these gate 
 - Formal Word output is generated only through `法律文书模板与导出` (`html_to_docx.py`) and passes `health_check.py`.
 
 Never treat “content completed” as “legal work completed.” A formal legal deliverable is complete only when the required matter routing, template confirmation, reverse structure check, source evidence files, preflight review, export chain, and health check are complete. Direct `pandoc md -> docx` export is allowed only for clearly labeled experiments or drafts, never for a formal legal deliverable.
+
+## Legal Reasoning Layer
+
+Every legal task gets a reasoning level (`推理等级`) before execution, chosen as the lowest sufficient level: L0 (direct answer for simple legal knowledge questions; no Matter Model, no adversarial deliberation), L1 (standard case/contract/document work with a simplified Matter Model), L2 (deliberative: competing legal relationships/causes of action, disputed key facts, strategy or risk decisions), L3 (adversarial: major litigation, formal legal opinions, high-impact matters, or an explicit user request for a devil's-advocate stress test). The controlling protocols live in `skills/legal/法律工作总控/references/` (`reasoning-mode-protocol.md`, `legal-clarification-protocol.md`, `matter-model-protocol.md`, `adversarial-deliberation-protocol.md`, `judgment-protocol.md`), with an executable reference implementation at `skills/legal/法律工作总控/scripts/reasoning_control.py`.
+
+Hard rules:
+
+- Every case fact carries an epistemic status: `ESTABLISHED` / `ASSERTED` / `DISPUTED` / `INFERRED` / `UNKNOWN`. Never turn a user assertion (e.g. “he borrowed 200k from me”) into an unconditional fact; user labels never auto-decide the legal relationship when contrary material exists.
+- Only decision-relevant unknowns that cannot be resolved from existing material or research may be asked to the user (`Blocking Unknown`); at most 1–5 questions per round, ordered Decision > Scope > Evidence > Output > Formatting.
+- For L2/L3 tasks, formal drafting of facts/claims/legal argument must happen after Advocate → Challenger → Judgment. Challenger must produce specific failure mechanisms (Minimum Failure Set), never generic “there is still risk”.
+- Drafting permission is `PASS` / `CONDITIONAL` / `BLOCKED`. `BLOCKED` forbids formal drafting. `CONDITIONAL` requires explicit assumption/claim/unconfirmed markers in the draft. Preflight review (`preflight_check.py`) hard-blocks exports with `BLOCKED` and requires a Judgment record for declared L2/L3 documents.
+- Internal reasoning artifacts (Matter Model, deliberation, Judgment) stay in the system-record area (`推理记录/`) and must never be delivered to clients or written into formal documents.

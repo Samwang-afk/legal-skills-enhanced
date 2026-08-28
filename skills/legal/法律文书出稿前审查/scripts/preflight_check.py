@@ -49,6 +49,7 @@ BODY_RE = re.compile(r"<body\b[^>]*>(.*?)</body>", re.I | re.S)
 OCR_UNCERTAIN_MARKERS = ["OCR待确认", "OCR识别不确定", "OCR不可用", "OCR未识别到可用文字", "[OCR待确认]"]
 SOURCE_BOUNDARY_MARKERS = ["已核验", "未核验", "缺口", "输出边界"]
 LEGAL_UNVERIFIED_MARKERS = ["未完成核验", "未核验", "不得用模型记忆", "待核验"]
+REASONING_CONDITIONAL_MARKERS = ["【假设】", "【当事人主张】", "【待确认】", "【待补证据】", "【未确认】"]
 
 
 @dataclass
@@ -492,6 +493,50 @@ def validate_legal_verification_text(text: str, issues: dict[str, list[str]]) ->
         append_issue(issues, "material", "法规校验摘要存在未完成核验事项：" + "、".join(unverified))
 
 
+def validate_reasoning_evidence(meta: dict[str, Any], facts: HtmlFacts | None, issues: dict[str, list[str]]) -> None:
+    """L2/L3 文书推理证据链检查：Judgment 必须存在且 drafting_permission 不得为 BLOCKED。"""
+    reasoning = meta.get("reasoning")
+    if reasoning is None:
+        return
+    if not isinstance(reasoning, dict) or not reasoning:
+        append_issue(issues, "business", "reasoning 字段必须是对象：{level, judgment_path, drafting_permission}")
+        return
+    level = str(reasoning.get("level") or "")
+    if level not in {"L2", "L3"}:
+        return
+
+    permission = str(reasoning.get("drafting_permission") or "")
+    if permission == "BLOCKED":
+        append_issue(
+            issues,
+            "hard",
+            "reasoning.drafting_permission 为 BLOCKED：关键事实/证据/法律关系/授权/程序问题未解决，禁止正式起草与导出",
+        )
+        return
+    if permission not in {"PASS", "CONDITIONAL"}:
+        append_issue(issues, "business", f"reasoning.drafting_permission 非法：{permission}")
+
+    judgment_path = normalize_path(reasoning.get("judgment_path"))
+    if not judgment_path:
+        append_issue(issues, "material", "L2/L3 文书缺少 reasoning.judgment_path（Judgment 记录路径）")
+    elif not judgment_path.exists():
+        append_issue(issues, "material", f"Judgment 记录文件不存在：{judgment_path}")
+    else:
+        judgment_text = existing_text(judgment_path)
+        if not judgment_text.strip():
+            append_issue(issues, "material", f"Judgment 记录为空或不可读：{judgment_path}")
+        elif "drafting_permission" not in judgment_text:
+            append_issue(issues, "material", f"Judgment 记录缺少 drafting_permission 字段：{judgment_path}")
+
+    if permission == "CONDITIONAL" and facts is not None:
+        if not any(marker in facts.text for marker in REASONING_CONDITIONAL_MARKERS):
+            append_issue(
+                issues,
+                "business",
+                "reasoning.drafting_permission 为 CONDITIONAL，但 draft.html 未显式标识【假设】/【当事人主张】/【待确认】/【待补证据】",
+            )
+
+
 def choose_status(
     issues: dict[str, list[str]],
     auto_fixes: list[str],
@@ -657,6 +702,7 @@ def check(args: argparse.Namespace) -> int:
             confirmations.append(item_text)
 
     known_gaps = meta.get("known_gaps") or []
+    validate_reasoning_evidence(meta, facts, issues)
     if isinstance(known_gaps, list) and known_gaps:
         append_issue(issues, "confirmation", "存在 known_gaps，需用户确认是否继续出稿：" + "；".join(map(str, known_gaps)))
         confirmations.extend(map(str, known_gaps))
@@ -845,6 +891,7 @@ def check_clone(args: argparse.Namespace) -> int:
     if qc_meta:
         validate_matter_paths(qc_meta, issues)
         validate_clone_evidence(qc_meta, issues, evidence_required)
+        validate_reasoning_evidence(qc_meta, None, issues)
     if complaint_data or fill_plan:
         validate_clone_field_sources(complaint_data, fill_plan, issues, confirmations)
 

@@ -41,6 +41,17 @@ description: 基于"六来源体系"和请求权基础分析，起草起诉状�
 4. 读取外置细节时，只读取当前任务需要的章节；不要为一个小问题整篇加载完整流程。
 5. 输出前同步披露已读取材料、已核验内容、未核验/存疑内容、法规案例检索状态和需要用户判断事项。
 
+## 推理契约（L2/L3 强制）
+
+本 Skill 负责“表达”，不重新成为决策引擎。法律关系判断、请求权选择、诉请与抗辩决策由 `初步法律分析` 与法律工作总控推理控制层（`reasoning-mode-protocol.md`、`matter-model-protocol.md`、`adversarial-deliberation-protocol.md`、`judgment-protocol.md`）形成。
+
+- 总控判定推理等级为 L2/L3 时，在生成“事实与理由”“诉讼请求”或关键法律论证正文前，必须存在 Judgment 记录且 `drafting_permission` 为 PASS 或 CONDITIONAL。
+- `drafting_permission` = BLOCKED 时，不得起草正式正文；返回总控的 Clarification / Evidence / Research / Professional Analysis 环节。
+- CONDITIONAL 时：允许形成内部草稿或带条件文稿，但所有假设、用户主张、未确认事实、待补证据必须在文稿和内部记录中显式标识（`【假设】`、`【当事人主张】`、`【待确认】`、`【待补证据】`），不得悄悄写成确定事实。
+- 正文事实表述遵守认知状态：ASSERTED / INFERRED / UNKNOWN 不得写成无条件客观事实；诉讼立场表述使用“原告主张”“当事人主张”“根据现有材料”等身份。
+- 起草中发现新材料或重大矛盾：不得静默修改结论；必须 reopen Matter Model 并重新 Judgment。
+- L0/L1 任务不受 Judgment 约束，但正式文书仍须完成用户确认与 `法律文书出稿前审查`；L2/L3 文书还须在 `preflight-meta.json` 中提供 `reasoning` 证据链。
+
 ## 要素式起诉状输出规则
 
 模板登记中已覆盖案由的法院要素式起诉状必须使用 DOCX 母版克隆填充链路，不得退回传统段落式起诉状模板或普通 HTML 表格重制格式。答辩状和“实例”文件不适用本规则。

@@ -1,12 +1,12 @@
 {
-  "name": "legal-skills",
+  "name": "legal-skills-enhanced",
   "version": "0.1.0",
-  "description": "Chinese legal workflow skills for AI agents: consultation, litigation, criminal defense, labor disputes, bankruptcy, contracts, compliance, legal drafting, and document export.",
+  "description": "Chinese legal workflow skills for AI agents with Ludus Agent reasoning enhancements.",
   "author": {
-    "name": "Legal Skills Contributors"
+    "name": "Legal Skills Contributors and Ludus Agent contributors"
   },
-  "repository": "https://github.com/pa1nrui1/legal-skills",
-  "license": "MIT",
+  "repository": "https://github.com/Samwang-afk/legal-skills-enhanced",
+  "license": "SEE LICENSE",
   "keywords": [
     "legal",
     "law",
@@ -15,17 +15,18 @@
     "skills",
     "litigation",
     "contract",
-    "compliance"
+    "compliance",
+    "ludus-agent"
   ],
   "skills": "./skills/",
   "interface": {
-    "displayName": "Legal Skills",
-    "shortDescription": "Chinese legal workflow skills",
-    "longDescription": "A Chinese legal workflow skill system for AI agents, covering legal consultation, civil litigation, criminal defense, labor disputes, bankruptcy procedures, contract drafting and review, product legal, regulatory compliance, legal research, and document export workflows.",
-    "developerName": "Legal Skills Contributors",
+    "displayName": "Legal Skills w/Ludus Agent",
+    "shortDescription": "Chinese legal workflow skills with reasoning enhancements",
+    "longDescription": "A Chinese legal workflow skill system for AI agents, enhanced with Ludus Agent clarification, adversarial review, and reasoning-control mechanisms.",
+    "developerName": "Legal Skills Contributors and Ludus Agent contributors",
     "category": "Productivity",
     "capabilities": ["Read", "Write"],
-    "websiteURL": "https://github.com/pa1nrui1/legal-skills",
+    "websiteURL": "https://github.com/Samwang-afk/legal-skills-enhanced",
     "defaultPrompt": [
       "法律工作总控 帮我路由这个法律任务",
       "合同审查 审核这份合同并输出风险清单",

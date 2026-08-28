@@ -1,21 +1,44 @@
 <div align="center">
 
-# Legal Skills w/<img width="2172" height="724" alt="图片" src="https://github.com/user-attachments/assets/e5639bf9-c7e9-436b-892e-9cca1e985ea3" />
+<img
+  src="https://github.com/user-attachments/assets/e5639bf9-c7e9-436b-892e-9cca1e985ea3"
+  alt="Ludus Agent"
+  width="850"
+/>
 
+<h1>Legal Skills w/</h1>
+
+<p>
 面向中国法律工作的 AI Agent Skills 集合，把法律咨询、诉讼、刑辩、劳动争议、破产、合同、合规、检索与文书交付组织成可复核、可追踪、可本地化改造的工作流。
+</p>
 
+<p>
 兼容 Codex、Claude Code、Qoder、OpenCode、OpenAI Skills 以及其他支持本地 Markdown Skill 的 Agent 平台。
+</p>
 
-[![Legal Skills](https://img.shields.io/badge/Legal%20Skills-AI%20for%20China%20Law-8B0000)](https://github.com/pa1nrui1/legal-skills)
-[![Skills](https://img.shields.io/badge/Skills-58-2E7D32)](#skill-列表)
-[![Domain](https://img.shields.io/badge/Domain-LegalTech-0F766E)](#项目概述)
+<a href="https://github.com/pa1nrui1/legal-skills">
+  <img src="https://img.shields.io/badge/Legal%20Skills-AI%20for%20China%20Law-8B0000">
+</a>
+<a href="#skill-列表">
+  <img src="https://img.shields.io/badge/Skills-58-2E7D32">
+</a>
+<a href="#项目概述">
+  <img src="https://img.shields.io/badge/Domain-LegalTech-0F766E">
+</a>
+
 <br/>
-[![Language](https://img.shields.io/badge/Language-%E4%B8%AD%E6%96%87%E4%BC%98%E5%85%88-B91C1C)](#)
-[![Codex](https://img.shields.io/badge/Codex-412991?logo=openai&logoColor=white)](#快速开始)
-[![License](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
+
+<a href="#">
+  <img src="https://img.shields.io/badge/Language-%E4%B8%AD%E6%96%87%E4%BC%98%E5%85%88-B91C1C">
+</a>
+<a href="#快速开始">
+  <img src="https://img.shields.io/badge/Codex-412991?logo=openai&logoColor=white">
+</a>
+<a href="LICENSE">
+  <img src="https://img.shields.io/badge/License-MIT-blue.svg">
+</a>
 
 </div>
-
 ## 关于作者
 
 潘睿，执业律师，现执业于广东广和（长春）律师事务所。

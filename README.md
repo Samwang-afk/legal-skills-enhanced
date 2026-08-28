@@ -25,6 +25,7 @@
 [![License](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 
 </div>
+
 ## 关于作者
 
 潘睿，执业律师，现执业于广东广和（长春）律师事务所。

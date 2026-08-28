@@ -1,9 +1,9 @@
 <div align="center">
 
 <img
-  src="https://github.com/user-attachments/assets/e5639bf9-c7e9-436b-892e-9cca1e985ea3"
+  width="560"
   alt="Ludus Agent"
-  width="850"
+  src="https://github.com/user-attachments/assets/e5639bf9-c7e9-436b-892e-9cca1e985ea3"
 />
 
 <h1>Legal Skills w/</h1>
@@ -16,27 +16,13 @@
 兼容 Codex、Claude Code、Qoder、OpenCode、OpenAI Skills 以及其他支持本地 Markdown Skill 的 Agent 平台。
 </p>
 
-<a href="https://github.com/pa1nrui1/legal-skills">
-  <img src="https://img.shields.io/badge/Legal%20Skills-AI%20for%20China%20Law-8B0000">
-</a>
-<a href="#skill-列表">
-  <img src="https://img.shields.io/badge/Skills-58-2E7D32">
-</a>
-<a href="#项目概述">
-  <img src="https://img.shields.io/badge/Domain-LegalTech-0F766E">
-</a>
-
+[![Legal Skills](https://img.shields.io/badge/Legal%20Skills-AI%20for%20China%20Law-8B0000)](https://github.com/pa1nrui1/legal-skills)
+[![Skills](https://img.shields.io/badge/Skills-58-2E7D32)](#skill-列表)
+[![Domain](https://img.shields.io/badge/Domain-LegalTech-0F766E)](#项目概述)
 <br/>
-
-<a href="#">
-  <img src="https://img.shields.io/badge/Language-%E4%B8%AD%E6%96%87%E4%BC%98%E5%85%88-B91C1C">
-</a>
-<a href="#快速开始">
-  <img src="https://img.shields.io/badge/Codex-412991?logo=openai&logoColor=white">
-</a>
-<a href="LICENSE">
-  <img src="https://img.shields.io/badge/License-MIT-blue.svg">
-</a>
+[![Language](https://img.shields.io/badge/Language-%E4%B8%AD%E6%96%87%E4%BC%98%E5%85%88-B91C1C)](#)
+[![Codex](https://img.shields.io/badge/Codex-412991?logo=openai&logoColor=white)](#快速开始)
+[![License](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 
 </div>
 ## 关于作者

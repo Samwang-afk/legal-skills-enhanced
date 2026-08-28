@@ -1,6 +1,6 @@
 <div align="center">
 
-# Legal Skills
+# Legal Skills w/Ludus Agent
 
 面向中国法律工作的 AI Agent Skills 集合，把法律咨询、诉讼、刑辩、劳动争议、破产、合同、合规、检索与文书交付组织成可复核、可追踪、可本地化改造的工作流。
 

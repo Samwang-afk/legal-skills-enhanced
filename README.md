@@ -7,6 +7,7 @@ src="https://github.com/user-attachments/assets/e5639bf9-c7e9-436b-892e-9cca1e98
 />
 
 <h1>Legal Skills w/Ludus Agent</h1>
+https://ludus.com.cn/
 
 <p>
 面向中国法律工作的 AI Agent Skills 集合，在原 Legal Skills 工作流基础上加入 Ludus Agent 推理增强，让法律咨询、诉讼、刑辩、劳动争议、破产、合同、合规、检索与文书交付更可复核、可追踪、可接管。

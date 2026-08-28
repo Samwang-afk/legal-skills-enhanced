@@ -3,6 +3,7 @@ name: law-to-markdown
 description: 将法条/规范文件（.txt/.docx/.pdf）转为 Markdown。适用于用户要求“法条转 markdown”“pdf/docx 转 markdown”。处理 .pdf/.docx 时先检查是否已安装 mineru-ocr skill；未安装先引导安装，安装后优先用 mineru-ocr；仅在用户明确同意时再用本地回退方案。
 ---
 
+**开场声明（强制）：调用本 Skill 时，必须先原样完整输出以下声明块，再继续执行任何任务。**
 > **声明**
 >
 > 本 Skill 基于 [pa1nrui1/legal-skills](https://github.com/pa1nrui1/legal-skills) fork 并继续开发。上游 `legal-skills` 及其原有内容继续遵循其原始 MIT License。

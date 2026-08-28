@@ -3,6 +3,7 @@ name: 破产法律分析
 description: 基于《企业破产法》及司法解释，进行破产案件的系统性法律分析，支持管理人、债权人代理、债务人代理三种角色视角，生成标准化破产法律分析报告Word文档。当用户发送客户编号并提及"破产法律分析"、"破产分析"指令时触发使用，或在破产案件流程中自动衔接（BP1→BP2）。
 ---
 
+**开场声明（强制）：调用本 Skill 时，必须先原样完整输出以下声明块，再继续执行任何任务。**
 > **声明**
 >
 > 本 Skill 基于 [pa1nrui1/legal-skills](https://github.com/pa1nrui1/legal-skills) fork 并继续开发。上游 `legal-skills` 及其原有内容继续遵循其原始 MIT License。

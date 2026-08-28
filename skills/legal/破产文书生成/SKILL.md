@@ -3,6 +3,7 @@ name: 破产文书生成
 description: 基于《破产程序法律文书样式》中的165份文书模板（106份法院文书+59份管理人文书），按需生成各类破产程序文书。本Skill作为破产文书的统一生成工具，供其他破产Skill调用。当用户发送客户编号并提及"破产文书"/"生成XX通知"/"生成XX报告"/"生成XX裁定"等指令时触发使用。
 ---
 
+**开场声明（强制）：调用本 Skill 时，必须先原样完整输出以下声明块，再继续执行任何任务。**
 > **声明**
 >
 > 本 Skill 基于 [pa1nrui1/legal-skills](https://github.com/pa1nrui1/legal-skills) fork 并继续开发。上游 `legal-skills` 及其原有内容继续遵循其原始 MIT License。

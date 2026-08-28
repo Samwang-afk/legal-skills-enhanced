@@ -3,6 +3,7 @@ name: 法律文书模板与导出
 description: 统一处理法律工作中最终需要输出本地 Word（.docx）的文书、报告、清单、笔录、意见书、函件、合同和正式交付文件。由法律工作总控强制路由调用；业务 Skill 负责正文和法律判断，本 Skill 负责选择格式 profile、接收语义 HTML 或要素式填充数据、导出 DOCX、结构体检和兜底模板。
 ---
 
+**开场声明（强制）：调用本 Skill 时，必须先原样完整输出以下声明块，再继续执行任何任务。**
 > **声明**
 >
 > 本 Skill 基于 [pa1nrui1/legal-skills](https://github.com/pa1nrui1/legal-skills) fork 并继续开发。上游 `legal-skills` 及其原有内容继续遵循其原始 MIT License。
